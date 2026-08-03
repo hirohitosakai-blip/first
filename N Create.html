@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>合同会社N Create｜Web制作会社｜東京のホームページ制作・ブランディング</title>
+<meta name="description" content="合同会社N Createは東京を拠点とするWeb制作会社です。コーポレートサイト、ECサイト、ブランディングまで、戦略設計から実装・運用までワンストップでご支援します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c;
+  --bg-2:#121216;
+  --bg-3:#191920;
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.18);
+  --txt:#f2f2f4;
+  --txt-2:#a1a1ab;
+  --txt-3:#6e6e78;
+  --accent:#5eead4;
+  --accent-2:#818cf8;
+  --radius:14px;
+  --max:1180px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:"Noto Sans JP","Outfit",-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-weight:400;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+::selection{background:var(--accent);color:#06201c}
+
+/* ---------- utility ---------- */
+.wrap{width:min(100% - 2.5rem,var(--max));margin-inline:auto}
+.en{font-family:"Outfit",sans-serif;letter-spacing:.14em}
+.sec{padding:clamp(5rem,11vw,9.5rem) 0;position:relative}
+.sec-head{margin-bottom:clamp(2.5rem,5vw,4rem)}
+.sec-label{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:"Outfit",sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1rem;
+}
+.sec-label::before{content:"";width:26px;height:1px;background:var(--accent)}
+.sec-title{
+  font-size:clamp(1.7rem,4.2vw,2.7rem);font-weight:700;line-height:1.45;
+  letter-spacing:.01em;
+}
+.sec-lead{margin-top:1.2rem;color:var(--txt-2);font-size:.95rem;max-width:44rem}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.7rem;
+  padding:1rem 2rem;border-radius:100px;font-size:.9rem;font-weight:500;
+  border:1px solid transparent;cursor:pointer;transition:.3s ease;
+}
+.btn-primary{background:var(--accent);color:#06201c}
+.btn-primary:hover{background:#fff;transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-2);color:var(--txt)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn .arw{transition:transform .3s ease}
+.btn:hover .arw{transform:translateX(4px)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- header ---------- */
+.hd{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  padding:1.1rem 0;transition:.4s ease;
+  border-bottom:1px solid transparent;
+}
+.hd.stuck{background:rgba(10,10,12,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line);padding:.75rem 0}
+.hd-in{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.logo{display:flex;align-items:center;gap:.6rem;font-family:"Outfit",sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:.1em}
+.logo-mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));flex-shrink:0}
+.nav{display:flex;align-items:center;gap:2rem}
+.nav a{font-size:.83rem;color:var(--txt-2);transition:color .25s;position:relative}
+.nav a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav a:hover{color:var(--txt)}
+.nav a:hover::after{width:100%}
+.hd .btn{padding:.7rem 1.4rem;font-size:.82rem}
+.burger{display:none;background:none;border:0;color:var(--txt);width:40px;height:40px;cursor:pointer;flex-direction:column;gap:6px;align-items:center;justify-content:center}
+.burger span{display:block;width:22px;height:1.5px;background:var(--txt);transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+@media(max-width:900px){
+  .nav{
+    position:fixed;inset:0;background:rgba(10,10,12,.97);backdrop-filter:blur(20px);
+    flex-direction:column;justify-content:center;gap:2rem;
+    opacity:0;pointer-events:none;transition:opacity .35s;
+  }
+  .nav.open{opacity:1;pointer-events:auto}
+  .nav a{font-size:1.15rem;color:var(--txt)}
+  .burger{display:flex;z-index:110}
+  .hd-in .btn{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:8rem 0 4rem}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.28}
+.orb-1{width:46vw;height:46vw;background:var(--accent);top:-12%;right:-8%;animation:float 18s ease-in-out infinite}
+.orb-2{width:38vw;height:38vw;background:var(--accent-2);bottom:-16%;left:-10%;animation:float 22s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-3%,5%)}}
+.grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 75% 60% at 50% 40%,#000 20%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 75% 60% at 50% 40%,#000 20%,transparent 80%);
+  opacity:.5;
+}
+.hero-in{position:relative;z-index:1}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1rem;border-radius:100px;
+  border:1px solid var(--line-2);background:rgba(255,255,255,.03);
+  font-size:.75rem;letter-spacing:.1em;color:var(--txt-2);margin-bottom:2rem;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(94,234,212,.7);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(94,234,212,0)}100%{box-shadow:0 0 0 0 rgba(94,234,212,0)}}
+.hero h1{
+  font-size:clamp(2.2rem,6.6vw,4.6rem);font-weight:700;line-height:1.32;letter-spacing:-.01em;
+  margin-bottom:1.8rem;
+}
+.hero h1 .gr{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--txt-2);font-size:clamp(.92rem,1.6vw,1.05rem);max-width:36rem;margin-bottom:2.8rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;
+  margin-top:clamp(3.5rem,7vw,5.5rem);padding-top:2.5rem;border-top:1px solid var(--line);
+}
+.stat b{display:block;font-family:"Outfit",sans-serif;font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:600;line-height:1.2;color:var(--txt)}
+.stat span{font-size:.78rem;color:var(--txt-3);letter-spacing:.06em}
+
+/* ---------- marquee ---------- */
+.mq{border-block:1px solid var(--line);padding:1.5rem 0;overflow:hidden;background:var(--bg-2)}
+.mq-track{display:flex;gap:4rem;width:max-content;animation:scroll 32s linear infinite}
+.mq:hover .mq-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.mq-item{font-family:"Outfit",sans-serif;font-size:.85rem;letter-spacing:.18em;color:var(--txt-3);white-space:nowrap;text-transform:uppercase}
+
+/* ---------- services ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem}
+.card{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:2.2rem 1.9rem;transition:.4s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden;
+}
+.card::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(94,234,212,.09),transparent 42%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.card:hover{border-color:var(--line-2);transform:translateY(-5px);background:var(--bg-3)}
+.card:hover::before{opacity:1}
+.card-no{font-family:"Outfit",sans-serif;font-size:.72rem;color:var(--accent);letter-spacing:.2em;margin-bottom:1.3rem;display:block}
+.card-ico{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:1.3rem;
+  background:rgba(94,234,212,.09);border:1px solid rgba(94,234,212,.2);color:var(--accent);
+}
+.card h3{font-size:1.12rem;font-weight:600;margin-bottom:.8rem;line-height:1.6}
+.card p{font-size:.87rem;color:var(--txt-2);line-height:1.85}
+.card ul{margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.45rem}
+.card li{font-size:.72rem;color:var(--txt-3);border:1px solid var(--line);padding:.25rem .7rem;border-radius:100px}
+
+/* ---------- works ---------- */
+.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.work{
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg-2);
+  transition:.4s cubic-bezier(.2,.7,.2,1);cursor:pointer;
+}
+.work:hover{transform:translateY(-6px);border-color:var(--line-2)}
+.work-vis{aspect-ratio:16/10;position:relative;overflow:hidden;display:grid;place-items:center}
+.work-vis svg{width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.work:hover .work-vis svg{transform:scale(1.05)}
+.work-body{padding:1.6rem 1.5rem}
+.work-cat{font-family:"Outfit",sans-serif;font-size:.68rem;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+.work h3{font-size:1.05rem;font-weight:600;margin:.6rem 0 .5rem}
+.work p{font-size:.83rem;color:var(--txt-2)}
+.work-meta{display:flex;gap:1.4rem;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.work-meta div span{display:block;font-size:.68rem;color:var(--txt-3);letter-spacing:.08em}
+.work-meta div b{font-family:"Outfit",sans-serif;font-size:1.05rem;font-weight:600;color:var(--accent)}
+
+/* ---------- flow ---------- */
+.flow{position:relative;display:grid;gap:0}
+.flow-item{display:grid;grid-template-columns:auto 1fr;gap:2rem;padding-bottom:2.6rem;position:relative}
+.flow-item:last-child{padding-bottom:0}
+.flow-mk{display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.flow-num{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  border:1px solid var(--line-2);background:var(--bg-2);
+  font-family:"Outfit",sans-serif;font-size:.9rem;font-weight:600;color:var(--accent);
+}
+.flow-line{flex:1;width:1px;background:linear-gradient(180deg,var(--line-2),transparent)}
+.flow-item:last-child .flow-line{display:none}
+.flow-body{padding-top:.5rem}
+.flow-body h3{font-size:1.1rem;font-weight:600;margin-bottom:.6rem}
+.flow-body .dur{font-family:"Outfit",sans-serif;font-size:.72rem;letter-spacing:.14em;color:var(--txt-3);display:block;margin-bottom:.5rem}
+.flow-body p{font-size:.87rem;color:var(--txt-2);max-width:42rem}
+@media(max-width:600px){.flow-item{gap:1.2rem}}
+
+/* ---------- pricing ---------- */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;align-items:start}
+.plan{
+  border:1px solid var(--line);border-radius:var(--radius);padding:2.2rem 1.9rem;
+  background:var(--bg-2);transition:.35s;position:relative;
+}
+.plan:hover{border-color:var(--line-2)}
+.plan.feat{border-color:rgba(94,234,212,.4);background:linear-gradient(180deg,rgba(94,234,212,.05),var(--bg-2))}
+.plan-badge{
+  position:absolute;top:-11px;left:1.9rem;background:var(--accent);color:#06201c;
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;padding:.25rem .8rem;border-radius:100px;
+}
+.plan h3{font-family:"Outfit",sans-serif;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-2);margin-bottom:.4rem}
+.plan .price{font-family:"Outfit",sans-serif;font-size:2.1rem;font-weight:600;line-height:1.3}
+.plan .price small{font-size:.85rem;font-weight:400;color:var(--txt-3);margin-left:.3rem}
+.plan .desc{font-size:.83rem;color:var(--txt-2);margin:.8rem 0 1.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line)}
+.plan ul{display:grid;gap:.75rem;margin-bottom:2rem}
+.plan li{font-size:.85rem;color:var(--txt-2);display:flex;gap:.65rem;align-items:flex-start;line-height:1.7}
+.plan li::before{content:"";width:15px;height:15px;border-radius:50%;background:rgba(94,234,212,.12);flex-shrink:0;margin-top:.35rem;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235eead4' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size:9px;background-position:center;background-repeat:no-repeat}
+.plan .btn{width:100%}
+.price-note{margin-top:1.8rem;font-size:.78rem;color:var(--txt-3)}
+
+/* ---------- faq ---------- */
+.faq{display:grid;gap:.75rem;max-width:52rem}
+.qa{border:1px solid var(--line);border-radius:12px;background:var(--bg-2);overflow:hidden;transition:border-color .3s}
+.qa[open]{border-color:var(--line-2)}
+.qa summary{
+  padding:1.3rem 1.6rem;cursor:pointer;font-size:.95rem;font-weight:500;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;list-style:none;
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"";width:11px;height:11px;flex-shrink:0;border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:rotate(45deg) translateY(-3px);transition:transform .3s}
+.qa[open] summary::after{transform:rotate(-135deg) translateY(-3px)}
+.qa .ans{padding:0 1.6rem 1.5rem;font-size:.87rem;color:var(--txt-2);max-width:44rem}
+
+/* ---------- company ---------- */
+.co{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(max-width:820px){.co{grid-template-columns:1fr}}
+.co-table{width:100%;border-collapse:collapse}
+.co-table th,.co-table td{text-align:left;padding:1rem 0;border-bottom:1px solid var(--line);font-size:.87rem;vertical-align:top}
+.co-table th{width:8.5rem;color:var(--txt-3);font-weight:400;letter-spacing:.06em}
+.co-table td{color:var(--txt-2)}
+.co-vals{display:grid;gap:1rem}
+.val{border:1px solid var(--line);border-radius:12px;padding:1.5rem;background:var(--bg-2)}
+.val h4{font-size:.95rem;font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.val h4::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.val p{font-size:.83rem;color:var(--txt-2)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--bg-2);border-block:1px solid var(--line)}
+.ct{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2.5rem,6vw,5rem)}
+@media(max-width:880px){.ct{grid-template-columns:1fr}}
+.ct-info li{padding:1rem 0;border-bottom:1px solid var(--line);font-size:.87rem;color:var(--txt-2)}
+.ct-info li span{display:block;font-family:"Outfit",sans-serif;font-size:.68rem;letter-spacing:.16em;color:var(--txt-3);text-transform:uppercase;margin-bottom:.3rem}
+form{display:grid;gap:1.15rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.fld{display:grid;gap:.5rem}
+.fld label{font-size:.78rem;color:var(--txt-2);letter-spacing:.04em}
+.fld label .req{color:var(--accent);margin-left:.3rem;font-size:.7rem}
+.fld input,.fld select,.fld textarea{
+  width:100%;padding:.85rem 1rem;border-radius:10px;
+  background:var(--bg);border:1px solid var(--line);color:var(--txt);
+  font-family:inherit;font-size:.88rem;transition:border-color .25s,background .25s;
+}
+.fld textarea{resize:vertical;min-height:130px;line-height:1.8}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--accent);background:var(--bg-3)}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--txt-3)}
+.fld select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236e6e78' stroke-width='2' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .9rem center;background-size:15px;padding-right:2.6rem}
+.fld select option{background:var(--bg-2);color:var(--txt)}
+.consent{display:flex;gap:.7rem;align-items:flex-start;font-size:.8rem;color:var(--txt-2);line-height:1.7}
+.consent input{width:16px;height:16px;margin-top:.25rem;accent-color:var(--accent);flex-shrink:0}
+.consent a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.form-msg{font-size:.85rem;color:var(--accent);padding:.9rem 1.1rem;border:1px solid rgba(94,234,212,.3);background:rgba(94,234,212,.06);border-radius:10px;display:none}
+.form-msg.show{display:block}
+
+/* ---------- footer ---------- */
+.ft{padding:4rem 0 2.2rem;font-size:.83rem}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid var(--line)}
+@media(max-width:760px){.ft-top{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+.ft-brand p{color:var(--txt-3);margin-top:1rem;max-width:22rem;font-size:.82rem}
+.ft h5{font-family:"Outfit",sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-3);margin-bottom:1.1rem}
+.ft-links{display:grid;gap:.7rem}
+.ft-links a{color:var(--txt-2);transition:color .25s;font-size:.83rem}
+.ft-links a:hover{color:var(--accent)}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;padding-top:1.8rem;color:var(--txt-3);font-size:.76rem}
+.to-top{
+  position:fixed;right:1.5rem;bottom:1.5rem;width:44px;height:44px;border-radius:50%;z-index:90;
+  background:var(--bg-3);border:1px solid var(--line-2);color:var(--txt-2);
+  display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:.35s;
+}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+</style>
+</head>
+<body>
+
+<header class="hd" id="hd">
+  <div class="wrap hd-in">
+    <a href="#top" class="logo"><span class="logo-mk"></span>N Create</a>
+    <nav class="nav" id="nav">
+      <a href="#service">Service</a>
+      <a href="#works">Works</a>
+      <a href="#flow">Flow</a>
+      <a href="#price">Price</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary">無料相談する<span class="arw">→</span></a>
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="grid-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="wrap hero-in">
+    <span class="hero-tag rv"><span class="dot"></span>2026年秋 新規案件 受付中</span>
+    <h1 class="rv">見られるだけの<br>サイトから、<span class="gr">成果を生む</span><br>サイトへ。</h1>
+    <p class="rv">合同会社N Create は、戦略設計からデザイン・実装・グロースまでを一気通貫で担う東京のWeb制作チームです。「作って終わり」にしない、事業に効くWebをつくります。</p>
+    <div class="hero-cta rv">
+      <a href="#contact" class="btn btn-primary">無料でご相談<span class="arw">→</span></a>
+      <a href="#works" class="btn btn-ghost">制作実績を見る</a>
+    </div>
+    <div class="hero-stats rv">
+      <div class="stat"><b class="en">320<span style="font-size:.6em">+</span></b><span>累計制作実績</span></div>
+      <div class="stat"><b class="en">98<span style="font-size:.6em">%</span></b><span>クライアント継続率</span></div>
+      <div class="stat"><b class="en">11<span style="font-size:.6em">年</span></b><span>創業からの歩み</span></div>
+      <div class="stat"><b class="en">4.9<span style="font-size:.6em">/5</span></b><span>お客様満足度</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    <span class="mq-item">Corporate Site</span><span class="mq-item">/</span>
+    <span class="mq-item">E-Commerce</span><span class="mq-item">/</span>
+    <span class="mq-item">Branding</span><span class="mq-item">/</span>
+    <span class="mq-item">UI / UX Design</span><span class="mq-item">/</span>
+    <span class="mq-item">Web Application</span><span class="mq-item">/</span>
+    <span class="mq-item">SEO &amp; Growth</span><span class="mq-item">/</span>
+    <span class="mq-item">Corporate Site</span><span class="mq-item">/</span>
+    <span class="mq-item">E-Commerce</span><span class="mq-item">/</span>
+    <span class="mq-item">Branding</span><span class="mq-item">/</span>
+    <span class="mq-item">UI / UX Design</span><span class="mq-item">/</span>
+    <span class="mq-item">Web Application</span><span class="mq-item">/</span>
+    <span class="mq-item">SEO &amp; Growth</span><span class="mq-item">/</span>
+  </div>
+</div>
+
+<!-- SERVICE -->
+<section class="sec" id="service">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label en">Service</span>
+      <h2 class="sec-title">事業フェーズに合わせて、<br>必要なものだけを的確に。</h2>
+      <p class="sec-lead">サイト制作を単体の"納品物"ではなく、事業成長のための手段として設計します。課題整理からご一緒するので、まだ要件が固まっていない段階でもご相談いただけます。</p>
+    </div>
+    <div class="cards">
+
+      <article class="card rv">
+        <span class="card-no en">01</span>
+        <div class="card-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+        </div>
+        <h3>コーポレートサイト制作</h3>
+        <p>採用・営業・IRなど、サイトが担う役割を整理したうえで情報設計から構築します。CMSは編集画面まで作り込み、社内の方が迷わず更新できる状態でお渡しします。</p>
+        <ul><li>情報設計</li><li>デザイン</li><li>WordPress</li><li>多言語対応</li></ul>
+      </article>
+
+      <article class="card rv">
+        <span class="card-no en">02</span>
+        <div class="card-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3>ECサイト構築</h3>
+        <p>Shopify・EC-CUBE を中心に、カート離脱を抑える購入導線と運用しやすい管理体制を両立。決済・物流・在庫連携まで含めた設計をご提案します。</p>
+        <ul><li>Shopify</li><li>EC-CUBE</li><li>決済連携</li><li>CVR改善</li></ul>
+      </article>
+
+      <article class="card rv">
+        <span class="card-no en">03</span>
+        <div class="card-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="14" r="2.5"/><circle cx="6" cy="12" r="3"/><path d="M12 22a10 10 0 1 1 10-10"/></svg>
+        </div>
+        <h3>ブランディング / VI</h3>
+        <p>ロゴ・カラー・トーン&amp;マナーからブランドガイドラインまで。Webだけでなく名刺・会社案内・展示会ツールまで一貫した見え方をつくります。</p>
+        <ul><li>ロゴ設計</li><li>VI策定</li><li>ガイドライン</li><li>各種ツール</li></ul>
+      </article>
+
+      <article class="card rv">
+        <span class="card-no en">04</span>
+        <div class="card-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l2 2-2 2M12 12h5"/></svg>
+        </div>
+        <h3>Webアプリ / システム開発</h3>
+        <p>予約・会員管理・業務ツールなど、既製品では届かない領域を内製チームで開発。Next.js / TypeScript を軸に、保守しやすい構成で構築します。</p>
+        <ul><li>Next.js</li><li>TypeScript</li><li>API設計</li><li>保守運用</li></ul>
+      </article>
+
+      <article class="card rv">
+        <span class="card-no en">05</span>
+        <div class="card-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg>
+        </div>
+        <h3>SEO / グロース支援</h3>
+        <p>公開後が本番です。アクセス解析・ヒートマップ・ABテストをもとに、月次で改善を回します。コンテンツ制作や広告運用の伴走も可能です。</p>
+        <ul><li>テクニカルSEO</li><li>記事制作</li><li>ABテスト</li><li>広告運用</li></ul>
+      </article>
+
+      <article class="card rv">
+        <span class="card-no en">06</span>
+        <div class="card-ico" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>保守 / 運用代行</h3>
+        <p>サーバー監視、脆弱性対応、コンテンツ更新までまとめてお任せいただけます。担当者不在でもサイトが止まらない体制を月額でご提供します。</p>
+        <ul><li>サーバー監視</li><li>セキュリティ</li><li>更新代行</li><li>定例MTG</li></ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="sec" id="works" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label en">Works</span>
+      <h2 class="sec-title">数字で振り返る、制作実績。</h2>
+      <p class="sec-lead">※ 掲載事例はサンプルです。実際の実績は個別にご紹介いたします。</p>
+    </div>
+    <div class="works">
+
+      <article class="work rv">
+        <div class="work-vis" style="background:linear-gradient(135deg,#0f2f2a,#0a1a2e)">
+          <svg viewBox="0 0 400 250" role="img" aria-label="製造業コーポレートサイトのイメージ">
+            <rect width="400" height="250" fill="none"/>
+            <rect x="40" y="38" width="320" height="174" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(94,234,212,.3)"/>
+            <rect x="40" y="38" width="320" height="26" rx="8" fill="rgba(94,234,212,.14)"/>
+            <circle cx="56" cy="51" r="3.5" fill="#5eead4"/><circle cx="68" cy="51" r="3.5" fill="rgba(255,255,255,.3)"/><circle cx="80" cy="51" r="3.5" fill="rgba(255,255,255,.3)"/>
+            <rect x="60" y="86" width="140" height="11" rx="5" fill="rgba(255,255,255,.6)"/>
+            <rect x="60" y="106" width="100" height="8" rx="4" fill="rgba(255,255,255,.28)"/>
+            <rect x="60" y="132" width="72" height="24" rx="12" fill="#5eead4"/>
+            <rect x="234" y="86" width="106" height="100" rx="8" fill="rgba(94,234,212,.18)"/>
+            <rect x="60" y="172" width="150" height="8" rx="4" fill="rgba(255,255,255,.16)"/>
+          </svg>
+        </div>
+        <div class="work-body">
+          <span class="work-cat en">Corporate</span>
+          <h3>精密機器メーカー / 全面リニューアル</h3>
+          <p>技術情報を整理し直し、海外顧客向けに英語・中国語版を同時構築。問い合わせフォームの項目を7→3に削減しました。</p>
+          <div class="work-meta">
+            <div><span>問い合わせ数</span><b class="en">+212%</b></div>
+            <div><span>直帰率</span><b class="en">-34%</b></div>
+            <div><span>期間</span><b class="en">4ヶ月</b></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work rv">
+        <div class="work-vis" style="background:linear-gradient(135deg,#1e1b3a,#2a1533)">
+          <svg viewBox="0 0 400 250" role="img" aria-label="ECサイトのイメージ">
+            <rect x="40" y="34" width="320" height="182" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(129,140,248,.35)"/>
+            <rect x="62" y="56" width="130" height="80" rx="6" fill="rgba(129,140,248,.25)"/>
+            <rect x="204" y="56" width="60" height="80" rx="6" fill="rgba(255,255,255,.09)"/>
+            <rect x="276" y="56" width="60" height="80" rx="6" fill="rgba(255,255,255,.09)"/>
+            <rect x="62" y="150" width="100" height="9" rx="4.5" fill="rgba(255,255,255,.55)"/>
+            <rect x="62" y="168" width="66" height="7" rx="3.5" fill="rgba(255,255,255,.25)"/>
+            <rect x="256" y="152" width="80" height="26" rx="13" fill="#818cf8"/>
+            <path d="M280 165h4l2 7h14" stroke="#1e1b3a" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="298" cy="176" r="2" fill="#1e1b3a"/><circle cx="306" cy="176" r="2" fill="#1e1b3a"/>
+          </svg>
+        </div>
+        <div class="work-body">
+          <span class="work-cat en">E-Commerce</span>
+          <h3>ライフスタイルブランド / Shopify移行</h3>
+          <p>独自カートから Shopify へ移行。定期購入機能とレビュー導線を新設し、リピート購入の比率が大きく改善しました。</p>
+          <div class="work-meta">
+            <div><span>売上</span><b class="en">+168%</b></div>
+            <div><span>CVR</span><b class="en">2.9%</b></div>
+            <div><span>期間</span><b class="en">3ヶ月</b></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work rv">
+        <div class="work-vis" style="background:linear-gradient(135deg,#14312b,#102a3a)">
+          <svg viewBox="0 0 400 250" role="img" aria-label="ブランディングのイメージ">
+            <circle cx="140" cy="125" r="58" fill="none" stroke="rgba(94,234,212,.5)" stroke-width="2"/>
+            <circle cx="188" cy="125" r="58" fill="none" stroke="rgba(129,140,248,.5)" stroke-width="2"/>
+            <rect x="252" y="76" width="96" height="26" rx="4" fill="rgba(255,255,255,.5)"/>
+            <rect x="252" y="112" width="70" height="10" rx="5" fill="rgba(255,255,255,.22)"/>
+            <rect x="252" y="130" width="86" height="10" rx="5" fill="rgba(255,255,255,.22)"/>
+            <rect x="252" y="158" width="22" height="22" rx="4" fill="#5eead4"/>
+            <rect x="280" y="158" width="22" height="22" rx="4" fill="#818cf8"/>
+            <rect x="308" y="158" width="22" height="22" rx="4" fill="rgba(255,255,255,.35)"/>
+          </svg>
+        </div>
+        <div class="work-body">
+          <span class="work-cat en">Branding</span>
+          <h3>創業50年の食品会社 / リブランディング</h3>
+          <p>ロゴとVIを刷新し、パッケージ・Web・採用資料まで統一。新卒エントリー数が過去最高を更新しました。</p>
+          <div class="work-meta">
+            <div><span>採用応募</span><b class="en">+3.4倍</b></div>
+            <div><span>認知度</span><b class="en">+41pt</b></div>
+            <div><span>期間</span><b class="en">6ヶ月</b></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="sec" id="flow">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label en">Flow</span>
+      <h2 class="sec-title">ご相談から公開まで、<br>だいたい3〜5ヶ月。</h2>
+      <p class="sec-lead">各フェーズの終わりに必ず確認のお時間をいただきます。「気づいたら想像と違うものが出てきた」ということが起きない進め方です。</p>
+    </div>
+    <div class="flow">
+
+      <div class="flow-item rv">
+        <div class="flow-mk"><div class="flow-num en">01</div><div class="flow-line"></div></div>
+        <div class="flow-body">
+          <span class="dur en">Day 0 — 無料</span>
+          <h3>ヒアリング・お問い合わせ</h3>
+          <p>まずは60分ほどオンラインでお話を伺います。ご予算や要件が固まっていなくても構いません。目的と現状の課題を一緒に言語化するところから始めます。</p>
+        </div>
+      </div>
+
+      <div class="flow-item rv">
+        <div class="flow-mk"><div class="flow-num en">02</div><div class="flow-line"></div></div>
+        <div class="flow-body">
+          <span class="dur en">2〜3週間</span>
+          <h3>戦略設計・お見積り</h3>
+          <p>競合調査、ターゲット整理、サイトマップとKPIを設計。実現したいことと予算に折り合いをつけた、具体的なご提案書とお見積りを提出します。</p>
+        </div>
+      </div>
+
+      <div class="flow-item rv">
+        <div class="flow-mk"><div class="flow-num en">03</div><div class="flow-line"></div></div>
+        <div class="flow-body">
+          <span class="dur en">4〜6週間</span>
+          <h3>デザイン制作</h3>
+          <p>ワイヤーフレーム → トップページデザイン → 全ページ展開の順に進めます。Figma を共有し、コメント機能でリアルタイムにご確認いただけます。</p>
+        </div>
+      </div>
+
+      <div class="flow-item rv">
+        <div class="flow-mk"><div class="flow-num en">04</div><div class="flow-line"></div></div>
+        <div class="flow-body">
+          <span class="dur en">4〜8週間</span>
+          <h3>実装・CMS構築</h3>
+          <p>レスポンシブ対応、表示速度の最適化、アクセシビリティ配慮まで含めて構築。ステージング環境で実機確認をしながら進行します。</p>
+        </div>
+      </div>
+
+      <div class="flow-item rv">
+        <div class="flow-mk"><div class="flow-num en">05</div><div class="flow-line"></div></div>
+        <div class="flow-body">
+          <span class="dur en">1〜2週間</span>
+          <h3>テスト・公開</h3>
+          <p>主要ブラウザ・デバイスでの検証、フォームの疎通確認、解析ツール設置を経て公開。操作マニュアルと運用レクチャーもお渡しします。</p>
+        </div>
+      </div>
+
+      <div class="flow-item rv">
+        <div class="flow-mk"><div class="flow-num en">06</div><div class="flow-line"></div></div>
+        <div class="flow-body">
+          <span class="dur en">公開後 — 継続</span>
+          <h3>運用・改善</h3>
+          <p>月次レポートをもとに改善提案を継続。数値の変化を見ながら、次の一手をご一緒に決めていきます。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="sec" id="price" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label en">Price</span>
+      <h2 class="sec-title">わかりやすい料金で、<br>安心してご依頼を。</h2>
+      <p class="sec-lead">追加費用が発生する条件は、着手前にすべて明示します。ページ数や機能に応じたお見積りは無料です。</p>
+    </div>
+    <div class="plans">
+
+      <div class="plan rv">
+        <h3 class="en">Light</h3>
+        <div class="price en">50<small>万円〜</small></div>
+        <p class="desc">まずは会社の顔となる1サイトを。5〜10ページ程度のコンパクトな構成。</p>
+        <ul>
+          <li>ページ数 5〜10P</li>
+          <li>オリジナルデザイン</li>
+          <li>スマホ・タブレット対応</li>
+          <li>WordPress（お知らせ更新機能）</li>
+          <li>お問い合わせフォーム</li>
+          <li>基本SEO設定</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">相談する</a>
+      </div>
+
+      <div class="plan feat rv">
+        <span class="plan-badge">人気プラン</span>
+        <h3 class="en">Standard</h3>
+        <div class="price en">150<small>万円〜</small></div>
+        <p class="desc">戦略設計から入り、成果を追うところまで。多くのお客様が選ばれる構成です。</p>
+        <ul>
+          <li>ページ数 15〜30P</li>
+          <li>競合調査・戦略設計</li>
+          <li>フルオーダーデザイン</li>
+          <li>CMS カスタマイズ構築</li>
+          <li>アニメーション実装</li>
+          <li>解析ツール設置・初期設定</li>
+          <li>公開後3ヶ月の無償サポート</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">相談する<span class="arw">→</span></a>
+      </div>
+
+      <div class="plan rv">
+        <h3 class="en">Enterprise</h3>
+        <div class="price en">400<small>万円〜</small></div>
+        <p class="desc">大規模サイト、EC、Webアプリなど。要件に合わせて個別に設計します。</p>
+        <ul>
+          <li>ページ数 無制限</li>
+          <li>多言語・多拠点対応</li>
+          <li>EC / 会員機能 / API連携</li>
+          <li>ブランディング・VI策定</li>
+          <li>専任ディレクター常時アサイン</li>
+          <li>月次グロース支援</li>
+          <li>SLA付き保守契約</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">相談する</a>
+      </div>
+
+    </div>
+    <p class="price-note rv">※ 表示価格はすべて税別です。保守運用は月額3万円〜、内容に応じてご提案します。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label en">FAQ</span>
+      <h2 class="sec-title">よくいただくご質問</h2>
+    </div>
+    <div class="faq">
+      <details class="qa rv"><summary>予算が決まっていないのですが、相談できますか？</summary>
+        <p class="ans">もちろん可能です。むしろ、やりたいことを先に伺ってから、実現方法と概算をいくつかのパターンでご提示するほうが結果的にうまくいきます。初回のご相談は無料ですので、お気軽にお声がけください。</p>
+      </details>
+      <details class="qa rv"><summary>公開までどれくらいかかりますか？</summary>
+        <p class="ans">規模によりますが、10ページ程度で2〜3ヶ月、30ページ規模で4〜5ヶ月が目安です。お急ぎの事情がある場合は、優先順位をつけた段階公開もご提案できますのでご相談ください。</p>
+      </details>
+      <details class="qa rv"><summary>自社で更新できるようにしたいのですが。</summary>
+        <p class="ans">はい。WordPress などのCMSを、Web担当者以外の方でも扱えるよう管理画面を作り込んでお渡しします。公開時には操作マニュアルの提供と1〜2時間のレクチャーを行っています。</p>
+      </details>
+      <details class="qa rv"><summary>遠方でも依頼できますか？</summary>
+        <p class="ans">可能です。オンライン中心の進行に慣れており、これまで北海道から沖縄まで、また海外拠点のお客様ともお仕事しています。必要に応じて訪問も承ります。</p>
+      </details>
+      <details class="qa rv"><summary>既存サイトの一部だけ直してもらうことはできますか？</summary>
+        <p class="ans">部分改修やページ追加のみのご依頼も承っています。現状のソースを拝見したうえで、対応可否と工数をお伝えします。他社様が制作したサイトでも問題ありません。</p>
+      </details>
+      <details class="qa rv"><summary>公開後のサポートはありますか？</summary>
+        <p class="ans">Standard プラン以上では公開後3ヶ月の無償サポートが付きます。それ以降は月額3万円〜の保守プランで、サーバー監視・セキュリティ対応・更新代行・月次レポートをご提供しています。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="sec" id="company" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label en">Company</span>
+      <h2 class="sec-title">わたしたちについて</h2>
+    </div>
+    <div class="co">
+      <div class="rv">
+        <table class="co-table">
+          <tbody>
+            <tr><th>会社名</th><td>合同会社N Create（N Create LLC）</td></tr>
+            <tr><th>設立</th><td>2015年4月</td></tr>
+            <tr><th>代表取締役</th><td>琴平 直樹</td></tr>
+            <tr><th>所在地</th><td>〒150-0002<br>東京都渋谷区渋谷 2-11-5 コトビル 6F</td></tr>
+            <tr><th>資本金</th><td>2,000万円</td></tr>
+            <tr><th>従業員数</th><td>28名（2026年8月現在）</td></tr>
+            <tr><th>事業内容</th><td>Webサイト企画・制作 / ブランディング / Webアプリケーション開発 / デジタルマーケティング支援</td></tr>
+            <tr><th>取引先</th><td>製造業、小売、金融、教育機関、自治体 ほか</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="co-vals rv">
+        <div class="val">
+          <h4>事業のことから話す</h4>
+          <p>デザインの話をする前に、事業の話をします。何のためのサイトかが曖昧なまま手を動かしても、良いものにはならないからです。</p>
+        </div>
+        <div class="val">
+          <h4>作って終わりにしない</h4>
+          <p>公開日はスタート地点です。数字を見て、直して、また見る。この繰り返しに付き合えるチームでありたいと考えています。</p>
+        </div>
+        <div class="val">
+          <h4>少人数・専任制</h4>
+          <p>1案件あたりディレクター・デザイナー・エンジニアの少人数チームが専任で担当。窓口が変わって話が伝わらない、ということが起きません。</p>
+        </div>
+        <div class="val">
+          <h4>渡したあとも動くものを</h4>
+          <p>更新しやすい設計、読みやすいコード、引き継げるドキュメント。私たちがいなくなっても困らない状態でお渡しします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="ct">
+      <div class="rv">
+        <span class="sec-label en">Contact</span>
+        <h2 class="sec-title">まずは、<br>お話を聞かせてください。</h2>
+        <p class="sec-lead">ご相談は無料です。「何から手をつけるべきか分からない」という段階でも歓迎します。2営業日以内にご返信いたします。</p>
+        <ul class="ct-info" style="margin-top:2.5rem">
+          <li><span class="en">Tel</span>03-1234-5678（平日 10:00〜18:00）</li>
+          <li><span class="en">Email</span>contact@n-create.example.jp</li>
+          <li><span class="en">Address</span>東京都渋谷区渋谷 2-11-5 コトビル 6F</li>
+          <li><span class="en">Business Hours</span>平日 10:00〜19:00（土日祝休）</li>
+        </ul>
+      </div>
+
+      <div class="rv">
+        <form id="form" novalidate>
+          <div class="row">
+            <div class="fld">
+              <label for="f-company">会社名<span class="req">必須</span></label>
+              <input type="text" id="f-company" name="company" placeholder="株式会社サンプル" required>
+            </div>
+            <div class="fld">
+              <label for="f-name">お名前<span class="req">必須</span></label>
+              <input type="text" id="f-name" name="name" placeholder="山田 太郎" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="fld">
+              <label for="f-email">メールアドレス<span class="req">必須</span></label>
+              <input type="email" id="f-email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="fld">
+              <label for="f-tel">電話番号</label>
+              <input type="tel" id="f-tel" name="tel" placeholder="03-1234-5678">
+            </div>
+          </div>
+          <div class="row">
+            <div class="fld">
+              <label for="f-type">ご相談内容<span class="req">必須</span></label>
+              <select id="f-type" name="type" required>
+                <option value="">選択してください</option>
+                <option>コーポレートサイト制作</option>
+                <option>ECサイト構築</option>
+                <option>ブランディング / VI</option>
+                <option>Webアプリ / システム開発</option>
+                <option>SEO / グロース支援</option>
+                <option>保守・運用のご相談</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label for="f-budget">ご予算</label>
+              <select id="f-budget" name="budget">
+                <option value="">未定 / 相談したい</option>
+                <option>〜50万円</option>
+                <option>50〜150万円</option>
+                <option>150〜400万円</option>
+                <option>400万円以上</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="f-msg">お問い合わせ内容<span class="req">必須</span></label>
+            <textarea id="f-msg" name="message" placeholder="現在の課題、実現したいこと、ご希望の公開時期などをお聞かせください。" required></textarea>
+          </div>
+          <label class="consent">
+            <input type="checkbox" id="f-agree" required>
+            <span><a href="#privacy">プライバシーポリシー</a>に同意のうえ送信します。</span>
+          </label>
+          <p class="form-msg" id="form-msg" role="status"></p>
+          <button type="submit" class="btn btn-primary">この内容で送信する<span class="arw">→</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#top" class="logo"><span class="logo-mk"></span>N Create</a>
+        <p>事業に効くWebをつくる、東京のWeb制作チーム。戦略設計から実装・グロースまで、一気通貫でご支援します。</p>
+      </div>
+      <div>
+        <h5>Sitemap</h5>
+        <div class="ft-links">
+          <a href="#service">サービス</a>
+          <a href="#works">制作実績</a>
+          <a href="#flow">制作の流れ</a>
+          <a href="#price">料金プラン</a>
+        </div>
+      </div>
+      <div>
+        <h5>Information</h5>
+        <div class="ft-links">
+          <a href="#company">会社概要</a>
+          <a href="#faq">よくある質問</a>
+          <a href="#contact">お問い合わせ</a>
+          <a href="#privacy">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span id="privacy">&copy; 2026 N Create LLC. All rights reserved.</span>
+      <span class="en" style="font-size:.7rem">Design &amp; Development in Tokyo</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="ページ上部へ戻る">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* --- scroll reveal --- */
+  var items = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+      });
+    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i % 6, 5) * 70) + "ms";
+      io.observe(el);
+    });
+  } else {
+    items.forEach(function(el){ el.classList.add("on"); });
+  }
+
+  /* --- header state + back to top --- */
+  var hd = document.getElementById("hd"), toTop = document.getElementById("toTop");
+  function onScroll(){
+    var y = window.scrollY;
+    hd.classList.toggle("stuck", y > 40);
+    toTop.classList.toggle("show", y > 700);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  toTop.addEventListener("click", function(){ window.scrollTo({ top: 0, behavior: "smooth" }); });
+
+  /* --- mobile nav --- */
+  var burger = document.getElementById("burger"), nav = document.getElementById("nav");
+  burger.addEventListener("click", function(){
+    var open = nav.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  nav.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      nav.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    });
+  });
+
+  /* --- card spotlight --- */
+  document.querySelectorAll(".card").forEach(function(c){
+    c.addEventListener("pointermove", function(e){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      c.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
+  /* --- contact form (demo: no backend) --- */
+  var form = document.getElementById("form"), msg = document.getElementById("form-msg");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var required = form.querySelectorAll("[required]"), ok = true, first = null;
+    required.forEach(function(f){
+      var valid = f.type === "checkbox" ? f.checked : f.value.trim() !== "";
+      if (f.type === "email" && valid) valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
+      if (!valid) { ok = false; if (!first) first = f; f.style.borderColor = "#f87171"; }
+      else { f.style.borderColor = ""; }
+    });
+    if (!ok) {
+      msg.textContent = "未入力の必須項目があります。ご確認ください。";
+      msg.style.color = "#f87171";
+      msg.classList.add("show");
+      if (first) first.focus();
+      return;
+    }
+    msg.textContent = "送信ありがとうございます。2営業日以内にご返信いたします。（※デモサイトのため実際には送信されません）";
+    msg.style.color = "";
+    msg.classList.add("show");
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>
