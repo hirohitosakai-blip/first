@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hirohitosakai-blip.github.io/first/sitemap.xml
